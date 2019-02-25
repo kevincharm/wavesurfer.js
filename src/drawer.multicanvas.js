@@ -59,7 +59,10 @@ export default class MultiCanvas extends Drawer {
         /**
          * Toggle to disable rendering of waveform.
          */
-        this.disableRender = typeof params.disableRender === 'boolean' ? params.disableRender : false;
+        this.disableRender =
+            typeof params.disableRender === 'boolean'
+                ? params.disableRender
+                : false;
     }
 
     /**
@@ -267,8 +270,8 @@ export default class MultiCanvas extends Drawer {
      */
     drawBars(peaks, channelIndex, start, end) {
         if (this.disableRender) {
-            console.warn('Waveform rendering is disabled!')
-            return
+            console.warn('Waveform rendering is disabled!');
+            return;
         }
 
         return this.prepareDraw(
