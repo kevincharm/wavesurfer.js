@@ -1072,10 +1072,6 @@ export default class WaveSurfer extends util.Observer {
      * @emits WaveSurfer#redraw
      */
     drawBuffer() {
-        if (this.disableRender) {
-            return;
-        }
-
         const nominalWidth = Math.round(
             this.getDuration() *
                 this.params.minPxPerSec *

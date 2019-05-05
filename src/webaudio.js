@@ -144,6 +144,17 @@ export default class WebAudio extends util.Observer {
         this.state = null;
         /** @private */
         this.explicitDuration = null;
+
+        /**
+         * Toggle to disable calculation and rendering of waveform & peaks.
+         */
+        this.disableRender =
+            typeof params.disableRender === 'boolean'
+                ? params.disableRender
+                : false;
+        if (this.disableRender) {
+            console.warn('Waveform rendering is disabled!');
+        }
     }
 
     /**
