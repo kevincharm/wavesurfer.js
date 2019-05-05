@@ -215,7 +215,8 @@ export default class WaveSurfer extends util.Observer {
         skipLength: 2,
         splitChannels: false,
         waveColor: '#999',
-        xhr: {}
+        xhr: {},
+        disableRender: false
     };
 
     /** @private */
@@ -394,6 +395,17 @@ export default class WaveSurfer extends util.Observer {
                 ? this.params.responsive
                 : 100
         );
+
+        /**
+         * Toggle to disable calculation and rendering of waveform & peaks.
+         */
+        this.disableRender =
+            typeof params.disableRender === 'boolean'
+                ? params.disableRender
+                : false;
+        if (this.disableRender) {
+            console.warn('Waveform rendering is disabled!');
+        }
 
         return this;
     }
@@ -1060,6 +1072,10 @@ export default class WaveSurfer extends util.Observer {
      * @emits WaveSurfer#redraw
      */
     drawBuffer() {
+        if (this.disableRender) {
+            return;
+        }
+
         const nominalWidth = Math.round(
             this.getDuration() *
                 this.params.minPxPerSec *
